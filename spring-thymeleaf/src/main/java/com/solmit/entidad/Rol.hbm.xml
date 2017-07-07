@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 15/06/2017 06:25:42 PM by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="tienda" dynamic-insert="false" dynamic-update="false" mutable="true" name="com.solmit.entidad.Rol" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="rol">
+        <id name="rolNombre" type="string">
+            <column length="20" name="rol_nombre"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="descripcion" optimistic-lock="true" type="string" unique="false">
+            <column length="64" name="descripcion"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="usuarioRols" optimistic-lock="true" sort="unsorted" table="usuario_rol">
+            <key on-delete="noaction">
+                <column length="20" name="rol_nombre" not-null="true"/>
+            </key>
+            <one-to-many class="com.solmit.entidad.UsuarioRol" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 15/06/2017 06:25:42 PM by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="tienda" dynamic-insert="false" dynamic-update="false" mutable="true" name="com.solmit.entidad.Producto" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="producto">
+        <id name="idProducto" type="java.lang.Integer">
+            <column name="id_producto"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="com.solmit.entidad.Categoria" embed-xml="true" fetch="select" insert="true" name="categoria" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="id_categoria" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="nombre" optimistic-lock="true" type="string" unique="false">
+            <column length="128" name="nombre"/>
+        </property>
+        <property generated="never" lazy="false" name="descripcion" optimistic-lock="true" type="string" unique="false">
+            <column length="256" name="descripcion"/>
+        </property>
+        <property generated="never" lazy="false" name="precio" optimistic-lock="true" type="java.lang.Long" unique="false">
+            <column name="precio" precision="10" scale="0"/>
+        </property>
+        <property generated="never" lazy="false" name="stock" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="stock"/>
+        </property>
+        <property generated="never" lazy="false" name="importancia" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="importancia"/>
+        </property>
+        <property generated="never" lazy="false" name="imagen" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="imagen"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="detallePedidos" optimistic-lock="true" sort="unsorted" table="detalle_pedido">
+            <key on-delete="noaction">
+                <column name="id_producto" not-null="true"/>
+            </key>
+            <one-to-many class="com.solmit.entidad.DetallePedido" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

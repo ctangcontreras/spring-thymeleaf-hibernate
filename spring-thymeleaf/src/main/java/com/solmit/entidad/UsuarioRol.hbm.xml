@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 15/06/2017 06:25:42 PM by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="tienda" dynamic-insert="false" dynamic-update="false" mutable="true" name="com.solmit.entidad.UsuarioRol" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="usuario_rol">
+        <composite-id class="com.solmit.entidad.UsuarioRolId" mapped="false" name="id" unsaved-value="undefined">
+            <key-property name="rolNombre" type="string">
+                <column length="20" name="rol_nombre"/>
+            </key-property>
+            <key-property name="idUsuario" type="string">
+                <column length="20" name="id_usuario"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="com.solmit.entidad.Rol" embed-xml="true" fetch="select" insert="false" name="rol" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column length="20" name="rol_nombre" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.solmit.entidad.Usuario" embed-xml="true" fetch="select" insert="false" name="usuario" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column length="20" name="id_usuario" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,42 @@
+// Apply the java-library plugin to add support for Java Library
+apply plugin: 'java-library'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'war'
+apply plugin: 'com.bmuschko.tomcat'
+archivesBaseName = 'Spring3-th'
+// In this section you declare where to find the dependencies of your project
+repositories {
+    // Use jcenter for resolving your dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+        mavenCentral()
+}
+
+dependencies {
+  def tomcatVersion = '7.0.59'
+        tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+           "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+           "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+
+    // This dependency is exported to consumers, that is to say found on their compile classpath.
+    testCompile 'junit:junit:4.12'
+ 	compile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.0-b01'
+    compile group: 'jstl', name: 'jstl', version: '1.2'    
+	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.3.Final'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.40'
+	compile group: 'org.springframework', name: 'spring-webmvc', version: '4.2.9.RELEASE'
+	compile group: 'org.springframework', name: 'spring-web', version: '4.2.9.RELEASE'
+ 	compile group: 'org.thymeleaf', name: 'thymeleaf-spring4', version: '2.1.5.RELEASE'
+ 	testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+}
+buildscript {
+ 
+    repositories {
+        jcenter()
+    }	
+ 
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.2.2'
+    }
+}

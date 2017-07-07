@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 15/06/2017 06:25:42 PM by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="tienda" dynamic-insert="false" dynamic-update="false" mutable="true" name="com.solmit.entidad.DetallePedido" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="detalle_pedido">
+        <composite-id class="com.solmit.entidad.DetallePedidoId" mapped="false" name="id" unsaved-value="undefined">
+            <key-property name="idDetallePedido" type="int">
+                <column name="id_detalle_pedido"/>
+            </key-property>
+            <key-property name="idPedido" type="int">
+                <column name="id_pedido"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="com.solmit.entidad.Pedido" embed-xml="true" fetch="select" insert="false" name="pedido" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="id_pedido" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.solmit.entidad.Producto" embed-xml="true" fetch="select" insert="true" name="producto" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="id_producto" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="precio" optimistic-lock="true" type="java.lang.Double" unique="false">
+            <column name="precio" precision="22" scale="0"/>
+        </property>
+        <property generated="never" lazy="false" name="cantidad" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="cantidad"/>
+        </property>
+    </class>
+</hibernate-mapping>
